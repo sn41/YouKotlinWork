@@ -1,5 +1,3 @@
-
-
 /* Класс Food - еда:
  члены этого класса calories - калорийность и weight - вес
  Их еще называют - атрибуты объекта, переменные объекта или поля. */
@@ -174,7 +172,34 @@ class Dog(weight: Float, name: String, satiety: Float, thirst: Float) : Pet(weig
     }
 }
 
+//класс может иметь блоки инициализации переменных init{ ... }
+class Calories(calories: Int) {
+    //начальная инициализация переменной начальным значением
+    private val calories0: Int = 200
 
+    //этим переменным будет присвоены значение в блоке init
+    private val calories1: Float
+    private val calories2: Float
+    private val calories3: Float
+
+    init {
+        calories1 = (calories + calories0) / 2.0f
+        calories2 = (calories + calories1) / 2.0f
+        calories3 = (calories + calories2) / 3.0f
+    }
+
+    private var weight: Float = 50f
+
+    //второй конструктор, с двумя параметрами calories и weight
+    constructor(calories: Int, weight: Float) : this(calories) {
+        this.weight = weight
+    }
+}
+
+//порядок выполнения
+//сначала выполняется присвоение значений переменным при их инициализации
+//потом выполняется блок инициализации init{}
+//затем выполняется конструктор.
 
 // соберём примеры вместе
 fun main() {
@@ -239,10 +264,10 @@ fun main() {
     // Можно создать массив родительского типа Pet
     // и поместить туда экземпляры классов-наследников:
     // экземпляры класса Dog, и экземпляры класса Cat, и экземпляры класса Pet
-    val array:Array<Pet> = arrayOf(myDog, мойКот, myPet)
+    val array: Array<Pet> = arrayOf(myDog, мойКот, myPet)
 
     // Можно создать массив для объектов типа Action, и поместить туда экземпляры классов-наследников.
-    val array2:Array<Action> = arrayOf(myDog, animal)
+    val array2: Array<Action> = arrayOf(myDog, animal)
 
     //======================================================================
     // переменные, экземпляры на примере класса File

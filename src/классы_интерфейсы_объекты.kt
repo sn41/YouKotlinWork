@@ -1,5 +1,3 @@
-
-
 /* Класс Food - еда:
  члены этого класса calories - калорийность и weight - вес
  Их еще называют - атрибуты объекта, переменные объекта или поля. */
@@ -74,7 +72,7 @@ class DryFood(calories: Int, weight: Float) : Food(calories, weight)
 // и при создании экземпляра класса DryFood он вызовет конструктор
 // родительского класса (говорят еще суперкласса) Food(calories, weight),
 // передав ему значения своих параметров calories и weight.
-// val пегги = DryFood(400, 1f)
+// val pedigree = DryFood(400, 1f)
 
 
 // Создадим класс Pet с атрибутами имя, вес, сытость и жажду питомца.
@@ -174,7 +172,34 @@ class Dog(weight: Float, name: String, satiety: Float, thirst: Float) : Pet(weig
     }
 }
 
+//класс может иметь блоки инициализации переменных init{ ... }
+class Calories(calories: Int) {
+    //начальная инициализация переменной начальным значением
+    private val calories0: Int = 200
 
+    //этим переменным будет присвоены значение в блоке init
+    private val calories1: Float
+    private val calories2: Float
+    private val calories3: Float
+
+    init {
+        calories1 = (calories + calories0) / 2.0f
+        calories2 = (calories + calories1) / 2.0f
+        calories3 = (calories + calories2) / 3.0f
+    }
+
+    private var weight: Float = 50f
+
+    //второй конструктор, с двумя параметрами calories и weight
+    constructor(calories: Int, weight: Float) : this(calories) {
+        this.weight = weight
+    }
+}
+
+//порядок выполнения
+//сначала выполняется присвоение значений переменным при их инициализации
+//потом выполняется блок инициализации init{}
+//затем выполняется конструктор.
 
 // соберём примеры вместе
 fun main() {
@@ -189,7 +214,7 @@ fun main() {
     val конфета2 = Sweets(600) // здесь calories = 600, weight = 5f
     val конфета3 = Sweets() //здесь calories = 1500, weight = 5f
 
-    val пегги = DryFood(400, 1f)
+    val pedigree = DryFood(400, 1f)
 
     val myPet = Pet(22f, "Бобик", 5f, 5f)
     val мойКот = Cat(1.5f, "Бантик", 0f, 1f)
@@ -203,9 +228,9 @@ fun main() {
     // от Pet наследуются:
     myDog.drink(молочко)
     myDog.eat(колбаска)
-    // пегги - объект класс DryFood, наследника Food,
+    // pedigree - объект класс DryFood, наследника Food,
     // а функция eat объявлена, как eat(food:Food), поэтому мы можем передать пегги в качестве параметра этой функции
-    myDog.eat(пегги)
+    myDog.eat(pedigree)
     val w = myDog.weight
     val s = myDog.satiety
     val th = myDog.thirst
@@ -239,10 +264,10 @@ fun main() {
     // Можно создать массив родительского типа Pet
     // и поместить туда экземпляры классов-наследников:
     // экземпляры класса Dog, и экземпляры класса Cat, и экземпляры класса Pet
-    val array:Array<Pet> = arrayOf(myDog, мойКот, myPet)
+    val array: Array<Pet> = arrayOf(myDog, мойКот, myPet)
 
     // Можно создать массив для объектов типа Action, и поместить туда экземпляры классов-наследников.
-    val array2:Array<Action> = arrayOf(myDog, animal)
+    val array2: Array<Action> = arrayOf(myDog, animal)
 
     //======================================================================
     // переменные, экземпляры на примере класса File
